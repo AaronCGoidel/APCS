@@ -28,7 +28,7 @@ public class ISBN
         int char1, char2, char3, char4, char5, char6, char7, char8, char9; // declare variables to hold int literal of each digit
         String checkDigits = "0123456789X"; // this string is all possible check values the index of the remainder of the sum and 11 is the correct check digit
 
-        // parse formatted ISBN into individual ints
+        // parse formatted ISBN into individual ints (these are not necessary but they make the code much more readable)
         char1 = getIntAtIndex(isbnCode, 0);
         char2 = getIntAtIndex(isbnCode, 2);
         char3 = getIntAtIndex(isbnCode, 3);
@@ -40,7 +40,8 @@ public class ISBN
         char9 = getIntAtIndex(isbnCode, 10);
 
         // sum using (n * isbn_n) + (n * isbn_n)
-        int sum = char1 + (2 * char2) + (3 * char3) + (4 * char4) + (5 * char5) + (6 * char6) + (7 * char7) + (8 * char8) + (9 * char9);
+        int sum = char1 + (2 * char2) + (3 * char3) + (4 * char4) + (5 * char5)
+                + (6 * char6) + (7 * char7) + (8 * char8) + (9 * char9);
 
         // set check value to the character in the master string at the index of the remainder of the sum and 11
         char checkValue = checkDigits.charAt(sum % 11);
