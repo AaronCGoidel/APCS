@@ -12,6 +12,7 @@ public class Exclamations
 
     public static void printResult(String option)
     {
+        // prints a message containing the option chosen below
         System.out.println("In this case you should probably say \"" + option + "\"");
     }
 
@@ -19,14 +20,18 @@ public class Exclamations
     {
         Scanner response = new Scanner(System.in);
 
+        // introduce the program
         System.out.println("Hi!" +
                 "\nThis program is intended to help you find the right thing to shout" +
                 "\nwhen something doesn't quite go your way." +
                 "\n(All school appropriate of course...)" +
                 "\n\nAnswer yes or no to the following (or y or n)\n");
 
+        // begin decision tree (see flow chart)
+        // prompt user
         System.out.print("Did your computer just crash? ");
 
+        // take in answer and continue based on response
         if(isAffirmative(response.nextLine())){
             System.out.print("Did you save in the last half-hour? ");
 
@@ -35,7 +40,7 @@ public class Exclamations
             }else{
                 printResult("HOLY SHIFT-KEY!");
             }
-        }else{
+        }else{ // if user did not enter yes above give next option
             System.out.print("Did you accidentally serve Cabernet in champagne flutes? ");
 
             if(isAffirmative(response.nextLine())){
