@@ -36,7 +36,7 @@ public class Exclamations
             System.out.print("Did you save in the last half-hour? ");
 
             if(isAffirmative(response.nextLine())){
-                printResult("Uh Oh.");
+                printResult("Uh Oh."); // sends resulting string to printer method to be outputted to the user
             }else{
                 printResult("HOLY SHIFT-KEY!");
             }
@@ -51,12 +51,12 @@ public class Exclamations
                 if(isAffirmative(response.nextLine())){
                     printResult("Dangnabbit!");
                 }else{
-                    System.out.print("Did a superhero foil your dastardly plan?");
+                    System.out.print("Did a superhero foil your dastardly plan? ");
 
                     if(isAffirmative(response.nextLine())){
                         printResult("Curses!");
                     }else{
-                        System.out.print("Is Han Solo talking about you two alone in the south passage? ");
+                        System.out.print("Is Han Solo talking about you being two alone in the south passage? ");
 
                         if(isAffirmative(response.nextLine())){
                             printResult("You stuck-up, half-witted, scruffy looking nerf herder!");
