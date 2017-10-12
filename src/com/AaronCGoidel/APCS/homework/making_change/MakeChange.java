@@ -1,4 +1,4 @@
-package com.AaronCGoidel.APCS.labs.making_change;
+package com.AaronCGoidel.APCS.homework.making_change;
 
 import java.util.Scanner;
 
