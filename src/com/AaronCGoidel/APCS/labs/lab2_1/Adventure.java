@@ -13,7 +13,7 @@ public class Adventure
      * @param start Time in milliseconds when time started
      * @param current Current system time in milliseconds
      * @param duration allowed time in milliseconds
-     * @return boolean Is time up
+     * @return boolean Is time up?
      */
     public static boolean checkTime(double start, double current, double duration)
     {
@@ -38,10 +38,18 @@ public class Adventure
         final double START_TIME = System.currentTimeMillis();
         double currentTime;
 
+        // opening prompt
+        System.out.println("Congratulations, you have been newly elected as a representative in the United States Congress." +
+                "\nThe question is: can you get anything done?");
+
+        System.out.println("Now that you've settled in");
+
         // main loop body
         do{
             currentTime = System.currentTimeMillis(); // take current system time
             System.out.println(toSec(TIME_PERIOD - (currentTime - START_TIME))); // print how much time is left in seconds
+
+
         }while(checkTime(START_TIME, currentTime, TIME_PERIOD));
     }
 }
