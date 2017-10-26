@@ -1,28 +1,32 @@
 package com.AaronCGoidel.APCS.class_work;
 
-import java.util.Scanner;
-
 public class Shifter
 {
-    public static char applyShift(char original, int shift)
-    {
-        int distance = shift % 26;
-        if(!Character.isWhitespace(original)) return (char)(original + distance);
-        return ' ';
-    }
-
     public static void main(String[] args)
     {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter a string to encode");
-        String inputString = in.nextLine();
-        System.out.println("Enter the amount to shift by");
-        int shiftValue = in.nextInt();
 
-        for(int i = 0; i < inputString.length(); i++)
+        String str = "The quick brown fox Jumped over the lazy Dog";
+
+        for(int i = 0; i < str.length(); i++)
         {
-            System.out.print(applyShift(inputString.charAt(i), shiftValue));
+            System.out.print(shifter(str.charAt(i), 12));
+        }
+    }
+
+
+    public static char shifter(char original, int offset)
+    {
+        offset = offset % 26 + 26;
+
+            if(Character.isLetter(original)){
+                if(Character.isUpperCase(original)){
+                    return ((char) ('A' + (original - 'A' + offset) % 26));
+                }else{
+                    return ((char) ('a' + (original - 'a' + offset) % 26));
+                }
+            }else{
+                return (original);
+            }
         }
 
-    }
 }
