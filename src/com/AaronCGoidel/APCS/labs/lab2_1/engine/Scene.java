@@ -57,17 +57,22 @@ public class Scene
     private Scene takeResponse()
     {
         System.out.println("Enter the number which corresponds to the option you would like to choose");
-        System.out.println("> ");
+        System.out.print("> ");
 
         int choice = in.nextInt();
 
         if(isValidOption(choice, options.length)){
-            return options[choice].getNextScene();
+            return options[choice - 1].getNextScene();
         }else{
             return null;
         }
     }
-    
+
+
+    /**
+     * Prints the current scene and options to the user and takes their input and returns the next scene
+     * @return Scene The next scene in the game (to be set as the game state in the main class)
+     */
     public Scene deliverPrompt()
     {
         System.out.println(prompt);
