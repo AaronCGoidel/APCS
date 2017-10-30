@@ -15,6 +15,7 @@ public class Adventure
         Scanner in = new Scanner(System.in);
         int choice;
         boolean easyIssue = false;
+
         // opening prompt
         System.out.println("Congratulations, you have been newly elected as a representative in the United States Congress." +
                 "\nThe question is: can you get anything done?");
@@ -23,7 +24,7 @@ public class Adventure
         /*
          * Scenario #1: Choose issue (always ends up as number 2)
          */
-        do{
+        do{ // <--- here is my obligatory loop
             System.out.println("1) Income inequality\n2) Build a small bridge in your state\n3) Gun control");
             System.out.print("Enter the number of the option you would like\n> ");
             choice = in.nextInt();
