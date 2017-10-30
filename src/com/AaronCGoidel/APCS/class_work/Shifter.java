@@ -7,11 +7,8 @@ public class Shifter
         offset = offset % 26 + 26;
 
         if(Character.isLetter(original)){
-            if(Character.isUpperCase(original)){
-                return ((char) ('A' + (original - 'A' + offset) % 26));
-            }else{
-                return ((char) ('a' + (original - 'a' + offset) % 26));
-            }
+            if(Character.isUpperCase(original)) return (char) ('A' + (original - 'A' + offset) % 26);
+            else return (char) ('a' + (original - 'a' + offset) % 26);
         }else{
             return (original);
         }
@@ -21,8 +18,7 @@ public class Shifter
     {
         String str = "The quick brown fox Jumped over the lazy Dog";
 
-        for(int i = 0; i < str.length(); i++)
-        {
+        for(int i = 0; i < str.length(); i++){
             System.out.print(shifter(str.charAt(i), 12));
         }
     }
