@@ -31,5 +31,13 @@ public class Adventure
             if(choice == 2) easyIssue = true; // is the issue the "correct one?"
             else System.out.println("Nope. Not gonna happen. Let's try again...");
         }while(!easyIssue);
+        System.out.println("Ok, seems simple enough. Let's draft some legislation.");
+        System.out.println("1) Submit a bill to the House floor.");
+        choice = in.nextInt();
+        if(choice == 1){
+            System.out.println("Congratulations! You are now the proud parent of H.R. 237." +
+                    "\nAfter submitting your bill to the Speaker it has been sent to the House Transportation and Infrastructure Committee." +
+                    "\nUnfortunately you lack the seniority to sit on this committee.");
+        }
     }
 }
