@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Adventure
 {
     /* Loops n times and gives the option to resign (ends game) or one other random one (continues)*/
-    public static void recess(int times)
+    public static boolean recess(int times)
     {
         Scanner in = new Scanner(System.in);
         int choice;
@@ -24,9 +24,10 @@ public class Adventure
             choice = in.nextInt();
             if(choice == 2){
                 System.out.println("Game Over");
-                break;
+                return false;
             }
         }
+        return true;
     }
 
     public static void main(String[] args)
@@ -85,10 +86,12 @@ public class Adventure
                         System.out.println("Your feeble and cowardly concession pleases your congressional colleagues and corporate backers. " +
                                 "\nBut before your bill can be voted on... It is time for congressional recess.");
 
-                        recess(10); // recess 10 times
+                        // recess 10 times
+                        if(recess(10)){ // if you do not resign in recess
+                            System.out.println("Your dog has died."); // game over (your dog died)
+                            System.out.println("You fall in to a deep depression and turn to drinking (apple juice of course). \nYou resign from office.");
+                        }
 
-                        System.out.println("Your dog has died."); // game over (your dog died)
-                        System.out.println("You fall in to a deep depression and turn to drinking (apple juice of course). \nYou resign from office.");
                     }
                 } else if(choice == 2){
                     System.out.println("Ok a few more changes have been made to your bill after you leave. But now it is time for it to hit the floor.");
@@ -96,14 +99,16 @@ public class Adventure
                     choice = in.nextInt();
                     System.out.println("Whoops, too late. It's time for congressional recess.");
 
-                    recess(6); // recess 6 times
 
-                    System.out.println("Your bill finally comes to a vote. \nThe house votes to strike everything related to the bridge and the motion passes.");
-                    System.out.println("1) Vote Yea \n2)WHAT?! My bridge isn't even in there anymore! Vote Nay");
-                    choice = in.nextInt();
+                    // recess 6 times
+                    if(recess(6)){ // if you do not resign in recess
+                        System.out.println("Your bill finally comes to a vote. \nThe house votes to strike everything related to the bridge and the motion passes.");
+                        System.out.println("1) Vote Yea \n2)WHAT?! My bridge isn't even in there anymore! Vote Nay");
+                        choice = in.nextInt();
 
-                    System.out.println("Well the bill passes but you still have no bridge. " +
-                            "\nNo one will vote for you in your next run for congress."); // finish
+                        System.out.println("Well the bill passes but you still have no bridge. " +
+                                "\nNo one will vote for you in your next run for congress."); // finish
+                    }
                 }
             }
         } else{ // finish
