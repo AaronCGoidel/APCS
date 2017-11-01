@@ -24,10 +24,10 @@ public class Adventure
             choice = in.nextInt();
             if(choice == 2){
                 System.out.println("Game Over");
-                return false;
+                return false; // returns false if you resign
             }
         }
-        return true;
+        return true; // returns true if you do not resign
     }
 
     public static void main(String[] args)
