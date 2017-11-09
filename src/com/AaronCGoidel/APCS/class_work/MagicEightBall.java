@@ -15,5 +15,6 @@ public class MagicEightBall
         in.next();
 
         System.out.println("The Magic 8 Ball says: " + responses[(int) (Math.random() * responses.length)]);
+
     }
 }
