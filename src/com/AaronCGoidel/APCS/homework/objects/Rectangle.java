@@ -70,6 +70,6 @@ public class Rectangle
 
     public boolean isSimilarTo(Rectangle other)
     {
-        return other.getSideA()/sideA == other.sideB/sideB;
+        return diagonal == other.diagonal;
     }
 }
