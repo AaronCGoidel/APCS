@@ -110,10 +110,19 @@ public class Sudoku
      */
     public boolean isValid()
     {
+        int x = -1;
+        int y = -1;
         // Iterates over each row and each column
         for(int i = 0; i < rows; i++){
-            if(!rowIsValid(i) || !colIsValid(i)){
-                return false; // Return false if a row or column is invalid
+            if(!rowIsValid(i)){
+                x = i; // If a row has an error store the row number
+            }
+            if(!colIsValid(i)){
+                y = i; // If a column has an error store the column number
+            }
+            if(x >= 0 && y >= 0){
+                System.out.print("Error at: (" + x + "," + y + ")\n"); // Print the location of the error
+                return false;
             }
         }
 
@@ -121,6 +130,7 @@ public class Sudoku
         for(int i = 0; i < rows; i += 3){
             for(int j = 0; j < cols; j += 3){
                 if(!squareIsValid(i, j)){
+                    System.out.print("Error in square at: (" + i + "," + j + ")\n"); // Print the location of the error
                     return false;
                 }
             }
