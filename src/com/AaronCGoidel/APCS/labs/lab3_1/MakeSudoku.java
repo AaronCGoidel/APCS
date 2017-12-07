@@ -41,9 +41,6 @@ public class MakeSudoku{
       return s;
   }
   public static void main(String[] args){
-    int[][] x = readSudoku("puzzle.txt");
-    Sudoku a = new Sudoku(x);
-    System.out.println(a.isValid());
-    a.print();
+    readSudoku("puzzle.txt");
   }
 }
