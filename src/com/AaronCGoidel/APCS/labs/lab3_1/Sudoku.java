@@ -1,12 +1,20 @@
 package com.AaronCGoidel.APCS.labs.lab3_1;
 
+/*
+* Aaron Goidel
+* December 5, 2017
+* Sudoku
+* Lab 3.1
+*/
+
 import java.util.Arrays;
 
 public class Sudoku
 {
     private int[][] puzzle;
     private int rows, cols;
-    private int[] valid;
+    private int[] valid; // "parent" set which contains a sorted list of the numbers from 1-9
+
     public Sudoku(int[][] clues)
     {
         this.rows = 9;
@@ -23,15 +31,22 @@ public class Sudoku
             }
         }
 
+        /*
+        Generates an array of the numbers between 1 and the size of the board
+         */
         valid = new int[rows];
         for(int i = 0; i < rows; i++){
             valid[i] = i + 1;
         }
-
-        System.out.println(Arrays.deepToString(puzzle));
-
     }
 
+    /**
+     * Takes a set of numbers and sees if it is a permutation of a master array
+     * Any valid row, column, or square, when sorted, will be the same as the parent
+     * i.e. it checks if the sorted version of an array is the numbers from 1 to the maximum
+     * @param toCheck int[] The numbers in the row, column, or square to check
+     * @return boolean Whether or not the given input is a permutation of the "parent" set
+     */
     private boolean isValidPermutation(int[] toCheck)
     {
         int[] temp;
@@ -40,31 +55,123 @@ public class Sudoku
         return Arrays.equals(valid, temp);
     }
 
-    public boolean rowIsValid(int rowNum)
+    /**
+     * Takes a given row id and checks if it is valid in sudoku
+     * @param rowNum The number of the row
+     * @return boolean Return value of the isValidPermutation method on the array which corresponds to the id
+     */
+    private boolean rowIsValid(int rowNum)
     {
         return isValidPermutation(puzzle[rowNum]);
     }
 
-    public boolean colIsValid(int colNum)
+    /**
+     * Takes a given column number and creates and passes an array of the values in the array
+     * to check if it is a valid sudoku column
+     * @param colNum Number of the column in the board
+     * @return boolean Whether or not it is a valid permutation
+     */
+    private boolean colIsValid(int colNum)
     {
         int[] currentCol = new int[cols];
+        // create an array to represent the current column
         for(int i = 0; i < cols; i++){
             currentCol[i] = puzzle[i][colNum];
         }
 
-        System.out.println(Arrays.toString(currentCol));
-
         return isValidPermutation(currentCol);
     }
 
-    public static void main(String[] args)
+    /**
+     * Takes coordinates and returns whether or not a sub-square of the board is valid or not
+     * The square that is checked is denoted by the row and column of the upper left hand corner
+     * @param row Number of the row in the upper left corner
+     * @param col Number of the column in the upper left corner
+     * @return boolean Whether or not the square is valid
+     */
+    private boolean squareIsValid(int row, int col)
     {
-        int[] x={1,2,3,4};
-        int[] y={2,1,4,3};
+        int[] currentSquare = new int[cols];
+        int currentPos = 0;
+        for(int i = 0; i < rows/3; i++){
+            for(int j = 0; j < cols/3; j++){
+                currentSquare[currentPos] = puzzle[i + row][j + col];
+                currentPos++;
+            }
+        }
 
-        System.out.println(Arrays.equals(x, y));
-        Arrays.sort(y);
-        System.out.println(Arrays.equals(x, y));
+        return isValidPermutation(currentSquare);
     }
 
+    /**
+     * Checks if the sudoku puzzle is completed in a valid way
+     * Iterates over each row, column, and sub-square and returns false if any of them return false
+     * @return boolean Whether or not the puzzle is completed
+     */
+    public boolean isValid()
+    {
+        // Iterates over each row and each column
+        for(int i = 0; i < rows; i++){
+            if(!rowIsValid(i) || !colIsValid(i)){
+                return false; // Return false if a row or column is invalid
+            }
+        }
+
+        // Iterates over each 3x3 sub-square and checks if they are valid
+        for(int i = 0; i < rows; i += 3){
+            for(int j = 0; j < cols; j += 3){
+                if(!squareIsValid(i, j)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Checks if the board has a number in each position
+     * @return boolean True if the board is full : False if the board contains any 0's
+     */
+    private boolean isFull()
+    {
+        for(int[] row : puzzle){
+            for(int num : row){
+                if(num == 0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Inserts a user entered number into the board
+     * @param row Row of the place in the board to play
+     * @param col Column of the space on the board
+     * @param num Number to insert
+     * @return boolean True if the user has played in an empty space
+     */
+    public boolean insert(int row, int col, int num)
+    {
+        if(num == 0){
+            puzzle[row][col] = num;
+            return true;
+        }
+        puzzle[row][col] = num;
+        return false;
+    }
+
+    /**
+     * Pretty prints the sudoku puzzle
+     */
+    public void print()
+    {
+        for(int[] row : puzzle){
+            System.out.print("| - | - | - | - | - | - | - | - | - |\n"); // Prints horizontal lines
+            for(int value : row){
+                System.out.print(String.format("| %s ", value != 0 ? value : " ")); // Prints the numbers and a space for 0
+            }System.out.println("|"); // Finishes each line with a pipe
+        }
+        System.out.print("| - | - | - | - | - | - | - | - | - |\n"); // Prints the bottom line
+    }
 }

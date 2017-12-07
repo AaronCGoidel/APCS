@@ -43,8 +43,7 @@ public class MakeSudoku{
   public static void main(String[] args){
     int[][] x = readSudoku("puzzle.txt");
     Sudoku a = new Sudoku(x);
-    System.out.println(a.rowIsValid(1));
-    System.out.println(a.colIsValid(1));
-    System.out.println();
+    System.out.println(a.isValid());
+    a.print();
   }
 }
