@@ -176,12 +176,19 @@ public class Sudoku
      */
     public void print()
     {
-        for(int[] row : puzzle){
-            System.out.print("| - | - | - | - | - | - | - | - | - |\n"); // Prints horizontal lines
-            for(int value : row){
-                System.out.print(String.format("| %s ", value != 0 ? value : " ")); // Prints the numbers and a space for 0
-            }System.out.println("|"); // Finishes each line with a pipe
+        System.out.println("|-------|-------|-------|"); // prints top rule
+        for(int i = 0; i < puzzle.length; i++){ // iterate over each row in puzzle
+            System.out.print("|"); // print pipe to start each line
+            for(int j = 0; j < puzzle[i].length; j++){ // iterate over each number in a row
+                // prints a pipe between every third number otherwise prints the number with spaces around it
+                System.out.print(String.format(" %s", (j + 1) % 3 == 0 ? puzzle[i][j] + " |" : puzzle[i][j]));
+            }
+            if((i + 1) % 3 == 0){ // prints a rule every three rows
+                System.out.println("\n|-------|-------|-------|");
+            }else{
+                System.out.println();
+            }
         }
-        System.out.print("| - | - | - | - | - | - | - | - | - |\n"); // Prints the bottom line
+
     }
 }
