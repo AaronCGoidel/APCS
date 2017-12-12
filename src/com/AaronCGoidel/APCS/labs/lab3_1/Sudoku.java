@@ -110,6 +110,11 @@ public class Sudoku
      */
     public boolean isValid()
     {
+        // return false if the game is not filled in
+        if(! isFull()){
+            System.out.println("Board still contains blank spaces");
+            return false;
+        }
         int x = -1;
         int y = -1;
         // Iterates over each row and each column
@@ -186,6 +191,7 @@ public class Sudoku
             if((i + 1) % 3 == 0){ // prints a rule every three rows
                 System.out.println("\n|-------|-------|-------|");
             }else{
+                // begins new line
                 System.out.println();
             }
         }
