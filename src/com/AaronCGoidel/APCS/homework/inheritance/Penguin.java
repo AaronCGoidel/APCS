@@ -70,6 +70,16 @@ public class Penguin extends Animal
         }
     }
 
+    @Override
+    public String toString()
+    {
+        return "Penguin{" +
+                "name='" + name + '\'' + ",\n" +
+                "color='" + getColor() + '\'' + ",\n" +
+                "number of legs=" + getNumOfLegs() +
+                '}';
+    }
+
     public String getName()
     {
         return name;

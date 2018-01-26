@@ -6,6 +6,7 @@ public class PenguinTester
     {
         Penguin percy = new Penguin();
         percy.setName("Percy");
+        System.out.println(percy);
 
         percy.swim();
         percy.walk();
@@ -15,6 +16,8 @@ public class PenguinTester
 
         percy.sealAttack();
         percy.walk();
+
+        System.out.println(percy);
 
     }
 }
