@@ -27,7 +27,7 @@ public class Penguin extends Animal
      * Full constructor
      * @param color String color of Penguin
      * @param numOfLegs int Number of legs
-     * @param name String name of Pengiun
+     * @param name String name of Penguin
      */
     public Penguin(String color, int numOfLegs, String name)
     {
@@ -42,7 +42,13 @@ public class Penguin extends Animal
      */
     public void walk()
     {
-        System.out.println("*Waddles Happily*");
+        if(getNumOfLegs() == 2){
+            System.out.println("*Waddles Happily*");
+        }else if(getNumOfLegs() >= 1){
+            System.out.println("*Limps Sadly*");
+        }else{
+            System.out.println("*Sits Still*");
+        }
     }
 
     /**
@@ -58,6 +64,7 @@ public class Penguin extends Animal
      */
     public void sealAttack()
     {
+        System.out.println("A hungry seal strikes " + getName());
         if(getNumOfLegs() > 0){
             super.setNumOfLegs(getNumOfLegs() - 1);
         }
