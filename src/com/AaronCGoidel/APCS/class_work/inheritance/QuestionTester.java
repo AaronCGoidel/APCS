@@ -1,31 +1,63 @@
 package com.AaronCGoidel.APCS.class_work.inheritance;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class QuestionTester
 {
     public static void main(String[] args)
     {
-        Question open_ended = new Question();
+        Scanner in = new Scanner(System.in);
 
-        open_ended.setText("Who was the first president of the United States?");
-        open_ended.setAnswer("George Washington");
+        boolean done = false;
+        ArrayList<Question> quiz = new ArrayList<>();
 
-        open_ended.display();
-        System.out.println(open_ended.checkAnswer("Queen Victoria"));
-        System.out.println(open_ended.checkAnswer("George Washington"));
+        while(!done){
+            System.out.println("Is this multiple choice? (no): ");
+            if(in.nextLine().equalsIgnoreCase("yes")){
+                MultipleChoice question = new MultipleChoice();
 
-        System.out.println();
-        MultipleChoice mc_question = new MultipleChoice();
+                System.out.println("Enter question text: ");
+                question.setAnswer(in.nextLine());
 
-        mc_question.setText("Which of the following is an element on the periodic table?");
-        mc_question.addChoice("Water", false);
-        mc_question.addChoice("Electron", false);
-        mc_question.addChoice("Boron", true);
-        mc_question.addChoice("Space Dust", false);
+                System.out.println("How many options are there? ");
+                for(int i = 0; i < in.nextInt(); i++){
+                    System.out.println("Enter option: ");
+                    String option = in.nextLine();
+                    System.out.println("Is this the correct answer? (no):" );
+                    boolean isAnswer = in.nextLine().equalsIgnoreCase("yes");
+                    question.addChoice(option, isAnswer);
+                }
+            }else{
+                Question question = new Question();
 
-        mc_question.display();
+                System.out.println("Enter question text: ");
+                question.setText(in.nextLine());
 
-        System.out.println(mc_question.checkAnswer('B'));
-        System.out.println(mc_question.checkAnswer('C'));
+                System.out.println("Enter answer: ");
+                question.setAnswer(in.nextLine());
+            }
+            System.out.println("Done?: ");
+            if(in.nextLine().equalsIgnoreCase("yes")){
+                done = true;
+            }
+        }
+        for(Question q : quiz){
+            q.display();
+        }
+    }
 
+    public static void present(Question q)
+    {
+        Scanner in = new Scanner(System.in);
+
+        q.display();
+
+        System.out.println("Enter your answer: ");
+        if(q.checkAnswer(in.nextLine())){
+            System.out.println("Correct");
+        }else{
+            System.out.println("Incorrect");
+        }
     }
 }
